@@ -27,7 +27,7 @@ void crear_objeto() {
 	string salir_o_no;
 	cout << "Introduce el identificador(número), esto sirve para evitar repetir variables en el código, procura no poner siempre el mismo identificador:" << endl;
 	cin >> identificador;
-	cout << "Introduce la URL o archivo de la textura(puede ser un enlace bs64 o uno normal), y pon el archivo o enlace con comillas:" << endl;
+	cout << "Introduce la URL o archivo de la textura(puede ser un enlace bs64 o uno normal)" << endl;
 	cin >> textura;
 	cout << "Introduce el primer número x de la geometría del objeto(ej: 10):" << endl;
 	cin >> num1Geometria;
@@ -45,11 +45,11 @@ void crear_objeto() {
 	cin >> posicion_z_objeto;
 	
 	archivo2 << "const textureLoader" << identificador << " = new THREE.TextureLoader();" << endl;
-	archivo2 << "const objeto" << identificador << "Textura = textureLoader" << identificador << ".load(" << textura << ");";
+	archivo2 << "const objeto" << identificador << "Textura = textureLoader" << identificador << ".load(''" << textura << "');";
 	archivo2 << "const objeto" << identificador << "Geometry = new THREE.BoxGeometry(" << num1Geometria << ", " << num2Geometria << ", " << num3Geometria << ");"<< endl;
 	if(material == "S") {
 		archivo2 << "const objeto" << identificador << "Material = new THREE.MeshBasicMaterial({map: " << "objeto" << identificador << "Textura, side: THREE.DoubleSide});" << endl;
-		archivo2 << "const objeto" << identificador << " = new THREE.Mesh(" << "objeto" << identificador << "Geometry, " << "objeto" << identificador << "Textura);" << endl;
+		archivo2 << "const objeto" << identificador << " = new THREE.Mesh(" << "objeto" << identificador << "Geometry, " << "objeto" << identificador << "Material);" << endl;
 		archivo2 << "objeto" << identificador << ".position.set(" << posicion_x_objeto << ", " << posicion_y_objeto << ", " << posicion_z_objeto << ");" << endl;
 		archivo2 << "scene.add(objeto" << identificador << ");" << endl << endl;
 		
@@ -349,8 +349,8 @@ int main() {
 		
 		archivo << "<html>" << endl;
 		archivo << "<body>" << endl;
-		archivo << "<script src='cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>" << endl;
-		archivo << "<script src='cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js'></script>" << endl;
+		archivo << "<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>" << endl;
+		archivo << "<script src='https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js'></script>" << endl;
 		archivo << "<script src='script.js'></script>" << endl;
 		archivo << "</body>" << endl;
 		archivo << "</html>";
