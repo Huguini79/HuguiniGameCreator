@@ -53,6 +53,45 @@ void crear_objeto() {
 		archivo2 << "objeto" << identificador << ".position.set(" << posicion_x_objeto << ", " << posicion_y_objeto << ", " << posicion_z_objeto << ");" << endl;
 		archivo2 << "scene.add(objeto" << identificador << ");" << endl << endl;
 		
+		cout << "¿Has terminado ya con todo esto el videojuego(S=Sí, N=No), si pones que sí, se va a terminar de escribir todo lo necesario para que el juego funcione, si te arrepientes de haber dicho que sí, puedes modificarlo por tí mismo o el código que genere el programa hay que colocarlo correctamente(eso ya depende de lo que tú quieras), se va a generar la función animate para que lo sepas:" << endl;
+		cin >> salir_o_no;
+		
+		cout << endl << endl;
+		
+		if(salir_o_no == "S") {
+			archivo2 << "function animate() {" << endl;
+			archivo2 << "    requestAnimationFrame(animate);" << endl;
+			archivo2 << "    renderer.render(scene, camera);" << endl;
+			archivo2 << "}" << endl << endl;
+			archivo2 << "animate();" << endl;
+		
+			cout << "Ok, gracias por haber usado este software de videojuegos." << endl;
+				
+		} else {
+			cout << "Ok, puedes continuar con el programa." << endl;
+			
+			string modo_programa;
+			cout << "Introduce el modo(crear_objeto, crear_modelo_glb, crear_skybox, crear_movimiento):" << endl;
+			cin >> modo_programa;
+			if(modo_programa == "crear_objeto") {
+				crear_objeto();
+				
+			} else if(modo_programa == "crear_modelo_glb") {
+				crear_modelo_glb();
+				
+			} else if(modo_programa == "crear_skybox") {
+				crear_skybox();
+				
+				
+			} else if(modo_programa == "crear_movimiento") {
+				crear_movimiento();
+				
+			} else {
+				cerr << "Entrada errónea, debes introducir crear_objeto, crear_modelo_glb, crear_skybox o crear_movimiento." << endl;
+			}
+			
+		}
+		
 	} else if(material == "N") {
 		archivo2 << "const objeto" << identificador << "Material = new THREE.MeshBasicMaterial({map: " << "objeto" << identificador << "Textura});" << endl;
 		archivo2 << "const objeto" << identificador << " = new THREE.Mesh(" << "objeto" << identificador << "Geometry, " << "objeto" << identificador << "Textura);" << endl;
@@ -348,6 +387,7 @@ int main() {
 		} else {
 			cerr << "Entrada errónea, debes introducir crear_objeto, crear_modelo_glb, crear_skybox o crear_movimiento." << endl;
 		}
+		
 		
 	} else if(confirmacion == "N") {
 		cout << "Ok, vuelve pronto." << endl;
